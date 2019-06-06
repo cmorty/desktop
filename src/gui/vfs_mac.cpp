@@ -616,7 +616,7 @@ void VfsMac::folderFileListFinish(OCC::DiscoveryDirectoryResult *dr)
 void *VfsMac::contentsOfDirectoryAtPath(QString absolutePath, QVariantMap &error)
 {
     QString relativePath = absolutePath;
-    relativePath.replace(cfgFile.getFsMirrorPath(), "");
+    relativePath.replace(cfgFile.defaultFileStreamSyncPath(), "");
         
     _mutex.lock();
     emit startRemoteFileListJob(relativePath);
