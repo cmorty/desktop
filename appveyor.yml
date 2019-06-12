@@ -1,8 +1,5 @@
 version: '{build}-{branch}'
 
-branches:
-  only:
-    - master
 
 clone_depth: 50
 
