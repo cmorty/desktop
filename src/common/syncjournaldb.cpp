@@ -322,6 +322,15 @@ bool SyncJournalDb::checkConnect()
         qCInfo(lcDb) << "sqlite3 journal_mode=" << pragma1.stringValue(0);
     }
 
+
+    pragma1.prepare("PRAGMA cache_size=-40000;");
+    if (!pragma1.exec()) {
+        return sqlFail("Set PRAGMA cache_size", pragma1);
+    } else {
+        pragma1.next();
+        qCInfo(lcDb) << "sqlite3 cache_size=-40000";
+    }
+
     // For debugging purposes, allow temp_store to be set
     static QByteArray env_temp_store = qgetenv("OWNCLOUD_SQLITE_TEMP_STORE");
     if (!env_temp_store.isEmpty()) {
